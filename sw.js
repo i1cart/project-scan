@@ -42,7 +42,7 @@ self.addEventListener('fetch', event => {
         if (response.ok) {
           const copy = response.clone();
           caches.open(CACHE).then(cache =>
-            cache.put('./styles.css?v=3', copy)
+            cache.put('./styles.css?v=5', copy)
           );
         }
         return response;
