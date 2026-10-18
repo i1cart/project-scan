@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#153e75"><meta name="description" content="Offline-first tardiness registry prototype">
+  <link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+  <title>Project SCAN</title>
+</head>
+<body>
+  <header class="topbar"><div><div class="eyebrow">STUDENT CHECK-IN & ATTENDANCE NETWORK</div><h1>Project SCAN</h1></div><button id="lockBtn" class="secondary hidden">Lock</button></header>
+  <main>
+    <section id="setupPanel" class="panel hidden">
+      <h2>Create your local vault</h2><p>Set a strong passphrase. The registry is encrypted on this device. If you lose the passphrase, the data cannot be recovered.</p>
+      <label for="newPass">Passphrase (12+ characters)</label><input id="newPass" type="password" autocomplete="new-password" minlength="12" placeholder="Use a long, unique passphrase">
+      <label for="confirmPass">Confirm passphrase</label><input id="confirmPass" type="password" autocomplete="new-password" minlength="12" placeholder="Type it again">
+      <button id="createVaultBtn" class="primary">Create encrypted vault</button><p id="setupMsg" class="msg" role="status"></p>
+    </section>
+    <section id="unlockPanel" class="panel hidden">
+      <h2>Unlock Project SCAN</h2><p>Enter your passphrase to decrypt the registry stored on this device.</p>
+      <label for="unlockPass">Passphrase</label><input id="unlockPass" type="password" autocomplete="current-password" placeholder="Your vault passphrase">
+      <button id="unlockBtn" class="primary">Unlock</button><p id="unlockMsg" class="msg" role="status"></p>
+    </section>
+    <section id="appPanel" class="hidden">
+      <div class="stats"><div class="stat"><span>Students loaded</span><strong id="studentCount">0</strong></div><div class="stat"><span>Today's entries</span><strong id="todayCount">0</strong></div></div>
+      <section class="panel">
+        <div class="section-heading"><div><div class="eyebrow">MONDAY LATE REGISTRY</div><h2>Register a student</h2></div><span class="offline-tag"><i></i> Local mode</span></div>
+        <label for="gradeFilter">Grade level</label><select id="gradeFilter"><option value="">All grades</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select>
+        <label for="searchBox">Search name, ID, or section</label><input id="searchBox" type="search" placeholder="Start typing a student's name…" autocomplete="off">
+        <div id="results" class="results"><p class="empty">Import the approved masterlist to begin.</p></div>
+        <p id="actionMsg" class="msg" role="status"></p>
+      </section>
+      <section class="panel">
+        <div class="section-heading"><div><div class="eyebrow">RECORDS</div><h2>Recent registrations</h2></div><button id="exportBtn" class="secondary">Export CSV</button></div>
+        <div id="records" class="records"><p class="empty">No registrations yet.</p></div>
+      </section>
+      <section class="panel tools">
+        <h2>Manage data</h2><p>Use a CSV with these column headers: <code>student_id,name,grade,section</code>. Keep a backup in a school-approved secure location.</p>
+        <label class="file-label" for="importFile">Import masterlist CSV</label><input id="importFile" type="file" accept=".csv,text/csv">
+        <div class="button-row"><button id="sampleBtn" class="secondary">Load fictional demo students</button><button id="clearBtn" class="danger-outline">Clear registry data</button></div>
+        <p id="manageMsg" class="msg" role="status"></p>
+      </section>
+      <p class="footnote">Prototype only. Use fictional data until the school approves the design, data handling, and access rules.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body></html>
